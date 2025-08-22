@@ -1,30 +1,57 @@
-# HeavyBagCoach Support
+# Combo Flow Support
 
-## Need Help?
+Support and legal documentation website for Combo Flow - Your Personal Boxing & Muay Thai Training Companion.
 
-### Contact Us
-- **Email**: comboflowsup@gmail.com
-- **GitHub Issues**: [Report a Bug](https://github.com/arturR18/HeavyBagCoach/issues)
+## 🌐 Live Website
+Visit the support website at: [https://arturr18.github.io/Combo-Flow-Support/](https://arturr18.github.io/Combo-Flow-Support/)
 
-### App Features
-- **Proximity Sensor Control**: Learn how to use hands-free training
-- **Custom Combos**: Create your own training combinations
-- **Timer Settings**: Configure rounds and rest periods
+## 📄 Legal Documents
 
-### Troubleshooting
-- **App not responding**: Restart the app
-- **Proximity sensor issues**: Clean your phone's proximity sensor
-- **Timer problems**: Check your device's audio settings
+- **[Privacy Policy](https://arturr18.github.io/Combo-Flow-Support/privacy.html)** - Our commitment to your privacy (Spoiler: We collect ZERO data)
+- **[Terms of Use](https://arturr18.github.io/Combo-Flow-Support/terms.html)** - Terms and conditions for using Combo Flow
 
-### FAQ
-**Q: How do I create custom combos?**
-A: Go to "Build New Training" → Select your discipline → Choose "Custom" → Add moves
+## 🥊 About Combo Flow
 
-**Q: Can I use this offline?**
-A: Yes! The app works 100% offline - no internet required.
+Combo Flow is a professional boxing and Muay Thai training app that:
+- Works 100% offline - no internet required
+- Collects absolutely NO user data
+- Provides audio and haptic feedback for training
+- Supports hands-free control via proximity sensor
+- Displays training sessions on lock screen via Live Activities
 
-**Q: What devices are supported?**
-A: iPhone with iOS 17.0+ and proximity sensor.
+### Features
+- **Free Version**: All built-in combos, full timer system, save up to 3 custom combos and 1 training set
+- **Pro Version**: Unlimited custom combos and training sets
 
-### Still Need Help?
-Create an issue on our main repository: [HeavyBagCoach Issues](https://github.com/arturR18/HeavyBagCoach/issues)
+## 📱 App Availability
+Coming soon to the iOS App Store. Requires iOS 17.0+
+
+## 💬 Contact & Support
+
+**Email**: [comboflowsup@gmail.com](mailto:comboflowsup@gmail.com)
+
+### Reporting Issues
+For bug reports and feature requests, please use email or wait for the app release.
+
+## 🛠️ Repository Structure
+
+```
+/
+├── index.html        # Main landing page
+├── privacy.html      # Privacy Policy
+├── terms.html        # Terms of Use
+├── style.css         # Styling for all pages
+└── README.md         # This file
+```
+
+## 🚀 Deployment
+
+This site is automatically deployed via GitHub Pages. Any push to the main branch will update the live website.
+
+## 📝 License
+
+© 2024 Combo Flow. All rights reserved.
+
+---
+
+**Train Like a Champion. Stay Private. 🥊**
