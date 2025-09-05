@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Flow - Master Your Combat Training | Boxing & Muay Thai</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Professional boxing and Muay Thai training app with advanced difficulty tracking. Train harder with combo sequences, analytics, and training insights.">
+    <meta name="keywords" content="boxing app, muay thai training, combat sports, combo training, fight training app">
+    <meta property="og:title" content="Combo Flow - Master Your Combat Training">
+    <meta property="og:description" content="Professional boxing and Muay Thai training app with advanced difficulty tracking.">
+</head>
+<body>
+    <!-- SVG Icon Definitions -->
+    <svg style="display: none;">
+        <defs>
+            <!-- Download Icon -->
+            <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </symbol>
+            
+            <!-- Star/Premium Icon -->
+            <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </symbol>
+            
+            <!-- Performance/Lightning Icon -->
+            <symbol id="icon-performance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </symbol>
+            
+            <!-- Analytics/Chart Icon -->
+            <symbol id="icon-analytics" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+            </symbol>
+            
+            <!-- Target Icon -->
+            <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+            </symbol>
+            
+            <!-- Check Icon -->
+            <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+            </symbol>
+            
+            <!-- Share Icon -->
+            <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+            </symbol>
+        </defs>
+    </svg>
+    
+    <header>
+        <div class="container">
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin: 0;">Combo Flow</h1>
+                <div class="nav-links" style="display: flex; gap: 2rem;">
+                    <a href="#features" style="color: var(--n100); text-decoration: none;">Features</a>
+                    <a href="#pro" style="color: var(--n100); text-decoration: none;">Pro</a>
+                    <a href="analytics.html" style="color: var(--p600); text-decoration: none; font-weight: bold;">Analytics</a>
+                    <a href="#download" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Get App</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="hero-enhanced">
+            <div class="hero-content">
+                <h2 class="hero-title animate-fade-in">Master Your Combat Training</h2>
+                <p style="font-size: 1.3rem; color: var(--n100); margin: 2rem auto; max-width: 600px;" class="animate-fade-in">
+                    Professional boxing & Muay Thai combo trainer with advanced difficulty tracking and comprehensive analytics.
+                </p>
+                
+                <!-- Animated Combo Display -->
+                <div class="combo-sequence animate-float">
+                    <span id="combo-display">1-2-3-HOOK</span>
+                </div>
+                
+                <div style="margin: 3rem 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#download" class="cta-button animate-strike">
+                        Start Training Now
+                    </a>
+                    <a href="analytics.html" class="cta-button" style="background: linear-gradient(135deg, var(--p600), var(--p500));">
+                        <svg width="20" height="20" style="vertical-align: middle; margin-right: 0.5rem;">
+                            <use xlink:href="#icon-star"/>
+                        </svg>
+                        View Pro Analytics
+                    </a>
+                </div>
+                
+                <!-- Training Stats Counter -->
+                <div class="stat-grid" style="max-width: 600px; margin: 3rem auto;">
+                    <div class="stat-item scroll-animate">
+                        <span class="stat-value">94</span>
+                        <span class="stat-label">Built-in Combos</span>
+                    </div>
+                    <div class="stat-item scroll-animate">
+                        <span class="stat-value">10K+</span>
+                        <span class="stat-label">Active Fighters</span>
+                    </div>
+                    <div class="stat-item scroll-animate">
+                        <span class="stat-value">4.8
+                            <svg width="24" height="24" style="vertical-align: middle; fill: var(--g600); stroke: none;">
+                                <use xlink:href="#icon-star"/>
+                            </svg>
+                        </span>
+                        <span class="stat-label">App Store Rating</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Core Features Section -->
+            <section class="features" id="features">
+                <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Built for Serious Training</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="feature scroll-animate" style="background: var(--n700); padding: 2rem;">
+                        <h3 style="color: var(--r600); font-size: 1.5rem;">
+                            <svg width="24" height="24" style="vertical-align: middle; margin-right: 0.5rem;">
+                                <use xlink:href="#icon-performance"/>
+                            </svg>
+                            Advanced Difficulty System
+                        </h3>
+                        <p>Sophisticated algorithm calculates combo difficulty based on complexity, movement types, and training intensity.</p>
+                    </div>
+                    <div class="feature scroll-animate" style="background: var(--n700); padding: 2rem;">
+                        <h3 style="color: var(--g600); font-size: 1.5rem;">
+                            <svg width="24" height="24" style="vertical-align: middle; margin-right: 0.5rem;">
+                                <use xlink:href="#icon-analytics"/>
+                            </svg>
+                            Advanced Analytics
+                        </h3>
+                        <p>Track progress with heatmaps, intensity trends, technique splits, and training insights.</p>
+                    </div>
+                    <div class="feature scroll-animate" style="background: var(--n700); padding: 2rem;">
+                        <h3 style="color: var(--b600); font-size: 1.5rem;">
+                            <svg width="24" height="24" style="vertical-align: middle; margin-right: 0.5rem;">
+                                <use xlink:href="#icon-target"/>
+                            </svg>
+                            Proximity Control
+                        </h3>
+                        <p>Hands-free training control - pause, skip, or repeat combos without touching your device.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="legal-links">
+                <h2>Legal Information</h2>
+                <div class="links">
+                    <a href="privacy.html" class="link-card">
+                        <h3>Privacy Policy</h3>
+                        <p>Learn how we protect your privacy with our zero-data collection approach.</p>
+                    </a>
+                    <a href="terms.html" class="link-card">
+                        <h3>Terms of Use</h3>
+                        <p>Understand the terms and conditions for using Combo Flow.</p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="app-features">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <strong>Timer System</strong>
+                        <p>Customizable rounds, rest periods, and combo intervals</p>
+                    </div>
+                    <div class="feature-item">
+                        <strong>Audio Cues</strong>
+                        <p>Triple beep round starts, combo changes, and rest notifications</p>
+                    </div>
+                    <div class="feature-item">
+                        <strong>Haptic Feedback</strong>
+                        <p>Feel the rhythm with tactile feedback on compatible devices</p>
+                    </div>
+                    <div class="feature-item">
+                        <strong>Proximity Control</strong>
+                        <p>Hands-free control during training - hover to pause, skip, or repeat</p>
+                    </div>
+                    <div class="feature-item">
+                        <strong>Session History</strong>
+                        <p>Track your training progress and review past sessions</p>
+                    </div>
+                    <div class="feature-item">
+                        <strong>Custom Combos</strong>
+                        <p>Create and save your own combinations with notes</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof Section -->
+            <section class="social-proof" style="padding: 4rem 0; background: var(--n800); margin: 4rem -2rem; padding-left: 2rem; padding-right: 2rem;">
+                <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Trusted by Fighters Worldwide</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+                    <div class="analytics-card scroll-animate">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"The difficulty tracking changed my training. I can actually see my progress week by week."</p>
+                        <p style="color: var(--g600); font-weight: bold;">— Sarah K., Amateur Boxer</p>
+                    </div>
+                    <div class="analytics-card scroll-animate">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"Perfect for pad work. The proximity sensor means I never have to stop mid-combo."</p>
+                        <p style="color: var(--g600); font-weight: bold;">— Mike T., Muay Thai Coach</p>
+                    </div>
+                    <div class="analytics-card scroll-animate">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"Finally, an app that respects privacy. No accounts, no tracking, just training."</p>
+                        <p style="color: var(--g600); font-weight: bold;">— Alex R., Professional Fighter</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pro-features" id="pro">
+                <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Unlock Your Full Potential</h2>
+                <p style="text-align: center; color: var(--n100); margin-bottom: 3rem;">Join thousands of fighters training harder with Combo Flow Pro</p>
+                <div class="comparison">
+                    <div class="tier free">
+                        <h3>Free</h3>
+                        <p style="color: var(--n300); margin-bottom: 1.5rem;">Perfect for getting started</p>
+                        <ul>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>2 training sessions per week</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>All 94 built-in combos</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>Full timer system</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>Audio & haptic feedback</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>Proximity control</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--g600);"><use xlink:href="#icon-check"/></svg>Basic session history</li>
+                        </ul>
+                    </div>
+                    <div class="tier pro animate-glow">
+                        <span class="pro-badge" style="position: absolute; top: -10px; right: 20px;">MOST POPULAR</span>
+                        <h3 style="font-size: 2rem;">Pro</h3>
+                        <p style="color: var(--p500); margin-bottom: 1.5rem; font-weight: bold;">$9.99/mo • $59.99/yr • $129.99 lifetime</p>
+                        <ul>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Unlimited</strong> training sessions</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Unlimited</strong> custom combos & moves</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Advanced analytics</strong> dashboard</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Difficulty tracking</strong> & trends</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Technique analysis</strong> & insights</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Training heatmaps</strong> (12 months)</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Training insights</strong> & recommendations</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg><strong>Export & share</strong> progress cards</li>
+                            <li><svg width="16" height="16" style="vertical-align: middle; margin-right: 0.5rem; stroke: var(--p600);"><use xlink:href="#icon-check"/></svg>Priority support</li>
+                        </ul>
+                        <a href="#download" class="cta-button" style="width: 100%; text-align: center; margin-top: 1.5rem;">
+                            Upgrade to Pro
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section id="download" style="text-align: center; padding: 4rem 0; background: linear-gradient(135deg, var(--n800), var(--n700)); border-radius: var(--radius-lg); margin: 4rem 0;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Level Up Your Training?</h2>
+                <p style="color: var(--n100); font-size: 1.2rem; margin-bottom: 2rem;">Download Combo Flow now and start training like a champion</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="https://apps.apple.com/app/combo-flow" class="cta-button" style="font-size: 1.2rem; padding: 1rem 3rem;">
+                        <svg width="24" height="24" style="vertical-align: middle; margin-right: 0.5rem;">
+                            <use xlink:href="#icon-download"/>
+                        </svg>
+                        Download for iOS
+                    </a>
+                </div>
+                <p style="color: var(--n300); margin-top: 2rem;">Requires iOS 15.0 or later • Age 9+</p>
+            </section>
+
+            <section class="contact">
+                <h2>Support</h2>
+                <p>Have questions or need help? We're here for you.</p>
+                <p>Email: <a href="mailto:comboflowsup@gmail.com">comboflowsup@gmail.com</a></p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Combo Flow. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="separator">•</span>
+                <a href="terms.html">Terms of Use</a>
+                <span class="separator">•</span>
+                <a href="mailto:comboflowsup@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Animation Scripts -->
+    <script>
+        // Combo Display Animation
+        const combos = [
+            '1-2-3-HOOK',
+            'JAB-CROSS-HOOK',
+            'TEEP-ROUNDHOUSE',
+            '1-2-SLIP-2',
+            'HOOK-CROSS-HOOK',
+            '1-2-3-2',
+            'KNEE-ELBOW-CROSS'
+        ];
+        
+        let comboIndex = 0;
+        const comboDisplay = document.getElementById('combo-display');
+        
+        if (comboDisplay) {
+            setInterval(() => {
+                comboIndex = (comboIndex + 1) % combos.length;
+                comboDisplay.style.opacity = '0';
+                setTimeout(() => {
+                    comboDisplay.textContent = combos[comboIndex];
+                    comboDisplay.style.opacity = '1';
+                }, 300);
+            }, 3000);
+        }
+        
+        // Scroll Animation Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add strike animation to buttons on click
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.getAttribute('href').startsWith('#')) return;
+                this.classList.add('animate-strike');
+                setTimeout(() => {
+                    this.classList.remove('animate-strike');
+                }, 300);
+            });
+        });
+        
+        // Stat counter animation
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.animated) {
+                    entry.target.animated = true;
+                    const value = entry.target.textContent;
+                    if (value.includes('K')) {
+                        animateValue(entry.target, 0, 10, 1500);
+                        setTimeout(() => {
+                            entry.target.innerHTML = '10K+';
+                        }, 1500);
+                    } else if (value === '94') {
+                        animateValue(entry.target, 0, 94, 1500);
+                    }
+                }
+            });
+        });
+        
+        document.querySelectorAll('.stat-value').forEach(el => {
+            if (el.textContent !== '4.8★') {
+                statsObserver.observe(el);
+            }
+        });
+    </script>
+    
+    <script src="animations.js"></script>
+</body>
+</html>

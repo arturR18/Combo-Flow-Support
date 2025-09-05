@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Analytics - Combo Flow | Advanced Training Insights</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Unlock advanced training analytics with Combo Flow Pro. Track progress, analyze techniques, and get training insights.">
+    <style>
+        /* Analytics Page Specific Styles */
+        .analytics-hero {
+            background: linear-gradient(135deg, var(--p600), var(--p500), var(--n900));
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .analytics-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .heatmap-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            padding: 1rem;
+            background: var(--n800);
+            border-radius: var(--radius-md);
+        }
+        
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .heatmap-cell:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        
+        .chart-container {
+            height: 200px;
+            position: relative;
+            padding: 1rem;
+            background: var(--n800);
+            border-radius: var(--radius-md);
+        }
+        
+        .bar {
+            display: inline-block;
+            width: 30px;
+            background: linear-gradient(to top, var(--g600), var(--g500));
+            margin: 0 5px;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+            vertical-align: bottom;
+        }
+        
+        .bar:hover {
+            transform: scaleY(1.1);
+            filter: brightness(1.2);
+        }
+        
+        .technique-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .technique-segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%);
+        }
+        
+        .sparkline {
+            stroke: var(--g600);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .coaching-hint {
+            background: var(--n700);
+            border-left: 3px solid var(--a600);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .coaching-hint .hint-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--n800);
+            padding: 0.25rem;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Icon Definitions -->
+    <svg style="display: none;">
+        <defs>
+            <!-- Star/Premium Icon -->
+            <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </symbol>
+            
+            <!-- Check Icon -->
+            <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+            </symbol>
+            
+            <!-- Share Icon -->
+            <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+            </symbol>
+            
+            <!-- Insight Icon -->
+            <symbol id="icon-insight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </symbol>
+            
+            <!-- Warning Icon -->
+            <symbol id="icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </symbol>
+        </defs>
+    </svg>
+    
+    <header>
+        <div class="container">
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin: 0;"><a href="index.html" style="color: inherit; text-decoration: none;">Combo Flow</a></h1>
+                <div class="nav-links" style="display: flex; gap: 2rem;">
+                    <a href="index.html" style="color: var(--n100); text-decoration: none;">Home</a>
+                    <a href="index.html#features" style="color: var(--n100); text-decoration: none;">Features</a>
+                    <a href="index.html#pro" style="color: var(--n100); text-decoration: none;">Pricing</a>
+                    <a href="index.html#download" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Get App</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Analytics Hero Section -->
+        <section class="analytics-hero">
+            <div class="container" style="position: relative; z-index: 1;">
+                <span class="pro-badge" style="font-size: 1rem; margin-bottom: 1rem; display: inline-block;">
+                    <svg width="16" height="16" style="vertical-align: middle; margin-right: 0.25rem;">
+                        <use xlink:href="#icon-star"/>
+                    </svg>
+                    PRO FEATURE
+                </span>
+                <h1 class="hero-title">Advanced Training Analytics</h1>
+                <p style="font-size: 1.3rem; color: var(--n100); max-width: 700px; margin: 2rem auto;">
+                    Transform your training with data-driven insights, progress tracking, and training recommendations.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <a href="index.html#download" class="cta-button">
+                        Upgrade to Pro
+                    </a>
+                    <a href="#features" class="cta-button" style="background: var(--n700); border: 2px solid var(--p600);">
+                        Explore Features
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Feature 1: Weekly Goal & Consistency -->
+            <section class="analytics-card scroll-animate" id="features">
+                <h2 style="color: var(--g600); margin-bottom: 1.5rem;">1. Weekly Goal & Consistency Tracking</h2>
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center;">
+                    <div class="progress-ring">
+                        <svg width="200" height="200">
+                            <circle cx="100" cy="100" r="90" stroke-width="10" class="progress-ring-bg"></circle>
+                            <circle cx="100" cy="100" r="90" stroke-width="10" class="progress-ring-progress" 
+                                    style="stroke-dasharray: 565; stroke-dashoffset: 141;"></circle>
+                        </svg>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <span style="font-size: 3rem; font-weight: bold; color: var(--g600);">75%</span>
+                            <span style="display: block; color: var(--n300);">This Week</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Stay Consistent, Build Habits</h3>
+                        <p style="color: var(--n100); line-height: 1.8;">Track your weekly training goals with visual progress rings. Monitor both session count and total training minutes.</p>
+                        <div style="margin-top: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Weekly Streak: <strong style="color: var(--g600);">12 weeks</strong></span>
+                                <span>Longest: <strong>24 weeks</strong></span>
+                            </div>
+                            <p style="color: var(--g500); font-weight: bold;">
+                                <svg width="16" height="16" style="vertical-align: middle; margin-right: 0.25rem; stroke: var(--g500);">
+                                    <use xlink:href="#icon-check"/>
+                                </svg>
+                                On pace — great consistency!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature 2: Training Heatmap -->
+            <section class="analytics-card scroll-animate">
+                <h2 style="color: var(--a600); margin-bottom: 1.5rem;">2. 12-Month Training Heatmap</h2>
+                <div>
+                    <p style="color: var(--n100); margin-bottom: 2rem;">Visualize your training consistency over the past year. Darker cells indicate higher intensity sessions.</p>
+                    <div class="heatmap-calendar">
+                        <script>
+                            // Generate heatmap cells
+                            for (let i = 0; i < 84; i++) {
+                                const intensity = Math.random();
+                                let color = 'var(--n700)';
+                                if (intensity > 0.8) color = 'var(--g600)';
+                                else if (intensity > 0.6) color = 'var(--g500)';
+                                else if (intensity > 0.4) color = 'var(--g400)';
+                                else if (intensity > 0.2) color = 'var(--n600)';
+                                
+                                document.write(`<div class="heatmap-cell" style="background: ${color};" title="Session intensity"></div>`);
+                            }
+                        </script>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem; align-items: center;">
+                        <span style="color: var(--n300);">Less</span>
+                        <div style="width: 15px; height: 15px; background: var(--n700); border-radius: 2px;"></div>
+                        <div style="width: 15px; height: 15px; background: var(--g400); border-radius: 2px;"></div>
+                        <div style="width: 15px; height: 15px; background: var(--g500); border-radius: 2px;"></div>
+                        <div style="width: 15px; height: 15px; background: var(--g600); border-radius: 2px;"></div>
+                        <span style="color: var(--n300);">More</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature 3: Weekly Training Minutes -->
+            <section class="analytics-card scroll-animate">
+                <h2 style="color: var(--b600); margin-bottom: 1.5rem;">3. Weekly Training Minutes</h2>
+                <div>
+                    <p style="color: var(--n100); margin-bottom: 2rem;">Track your training volume week by week. The dashed line shows your target.</p>
+                    <div class="chart-container" style="display: flex; align-items: flex-end; justify-content: space-around;">
+                        <div class="bar" style="height: 120px;" title="Monday: 45m"></div>
+                        <div class="bar" style="height: 90px;" title="Tuesday: 30m"></div>
+                        <div class="bar" style="height: 150px;" title="Wednesday: 60m"></div>
+                        <div class="bar" style="height: 60px;" title="Thursday: 20m"></div>
+                        <div class="bar" style="height: 140px;" title="Friday: 55m"></div>
+                        <div class="bar" style="height: 100px;" title="Saturday: 35m"></div>
+                        <div class="bar" style="height: 80px;" title="Sunday: 25m"></div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--g600);">
+                        vs last week: <strong>+15%</strong> ↑
+                    </p>
+                </div>
+            </section>
+
+            <!-- Analytics Grid for remaining features -->
+            <div class="analytics-grid">
+                <!-- Feature 4: Intensity Trend -->
+                <div class="analytics-card scroll-animate">
+                    <h2 style="color: var(--r600); margin-bottom: 1rem;">4. Intensity Trends</h2>
+                    <svg width="100%" height="100" style="margin: 1rem 0;">
+                        <polyline class="sparkline" points="10,80 40,60 70,65 100,45 130,50 160,30 190,35 220,25 250,30 280,20"></polyline>
+                    </svg>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <span style="color: var(--n300);">7-day avg:</span>
+                            <strong style="color: var(--r600);">7.2</strong>
+                        </div>
+                        <div>
+                            <span style="color: var(--n300);">28-day avg:</span>
+                            <strong style="color: var(--r500);">6.8</strong>
+                        </div>
+                    </div>
+                    <p style="color: var(--a600); margin-top: 1rem;">
+                        <svg width="16" height="16" style="vertical-align: middle; margin-right: 0.25rem; stroke: var(--a600);">
+                            <use xlink:href="#icon-warning"/>
+                        </svg>
+                        Consider a deload week
+                    </p>
+                </div>
+
+                <!-- Feature 5: Technique Split -->
+                <div class="analytics-card scroll-animate">
+                    <h2 style="color: var(--t600); margin-bottom: 1rem;">5. Technique Balance</h2>
+                    <div class="technique-chart">
+                        <div style="position: relative; width: 100%; height: 100%;">
+                            <div style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(
+                                var(--b600) 0deg 144deg,
+                                var(--a600) 144deg 216deg,
+                                var(--t600) 216deg 288deg,
+                                var(--r600) 288deg 360deg
+                            );"></div>
+                            <div style="position: absolute; inset: 30%; background: var(--n800); border-radius: 50%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin: 0.5rem 0;">
+                            <span><span style="color: var(--b600);">■</span> Hands: 40%</span>
+                            <span><span style="color: var(--a600);">■</span> Kicks: 20%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 0.5rem 0;">
+                            <span><span style="color: var(--t600);">■</span> Knees: 20%</span>
+                            <span><span style="color: var(--r600);">■</span> Elbows: 20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Top Combos -->
+                <div class="analytics-card scroll-animate">
+                    <h2 style="color: var(--p600); margin-bottom: 1rem;">6. Top Combos</h2>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--p600);">Most Used</button>
+                        <button style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--n700); color: var(--n100); border: 1px solid var(--n600); border-radius: 50px; cursor: pointer;">New This Month</button>
+                    </div>
+                    <div style="space-y: 1rem;">
+                        <div style="padding: 0.75rem; background: var(--n700); border-radius: 8px; margin-bottom: 0.5rem;">
+                            <div class="combo-sequence" style="font-size: 1rem; padding: 0.5rem; margin: 0;">1-2-3-2</div>
+                            <span style="color: var(--n300); font-size: 0.9rem;">245 reps • Avg intensity: 6.5</span>
+                        </div>
+                        <div style="padding: 0.75rem; background: var(--n700); border-radius: 8px; margin-bottom: 0.5rem;">
+                            <div class="combo-sequence" style="font-size: 1rem; padding: 0.5rem; margin: 0;">TEEP-RK</div>
+                            <span style="color: var(--n300); font-size: 0.9rem;">189 reps • Avg intensity: 7.2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 7: Recent Sessions -->
+            <section class="analytics-card scroll-animate">
+                <h2 style="color: var(--g600); margin-bottom: 1.5rem;">7. Recent Training Sessions</h2>
+                <div style="display: grid; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--n700); border-radius: 8px;">
+                        <div>
+                            <strong>Today - Boxing</strong>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <span class="pro-badge" style="background: var(--b600); font-size: 0.75rem;">45 min</span>
+                                <span class="pro-badge" style="background: var(--g600); font-size: 0.75rem;">8 rounds</span>
+                                <span class="pro-badge" style="background: var(--r600); font-size: 0.75rem;">Intensity: 7.5</span>
+                            </div>
+                        </div>
+                        <button style="padding: 0.5rem 1rem; background: var(--n600); color: var(--n100); border: none; border-radius: 8px; cursor: pointer;">Share</button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--n700); border-radius: 8px;">
+                        <div>
+                            <strong>Yesterday - Muay Thai</strong>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <span class="pro-badge" style="background: var(--b600); font-size: 0.75rem;">30 min</span>
+                                <span class="pro-badge" style="background: var(--g600); font-size: 0.75rem;">6 rounds</span>
+                                <span class="pro-badge" style="background: var(--a600); font-size: 0.75rem;">Intensity: 6.2</span>
+                            </div>
+                        </div>
+                        <button style="padding: 0.5rem 1rem; background: var(--n600); color: var(--n100); border: none; border-radius: 8px; cursor: pointer;">Share</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature 8: Training Hints -->
+            <section class="analytics-card scroll-animate">
+                <h2 style="color: var(--a600); margin-bottom: 1.5rem;">8. Training Insights & Tips</h2>
+                <div class="coaching-hint">
+                    <svg width="20" height="20" class="hint-icon" style="stroke: var(--a600);">
+                        <use xlink:href="#icon-insight"/>
+                    </svg>
+                    <strong>Technique Balance</strong>
+                    <p style="margin-top: 0.5rem; color: var(--n100);">Hands dominated 80% this week — add 10 kicks next session for balance.</p>
+                </div>
+                <div class="coaching-hint">
+                    <svg width="20" height="20" class="hint-icon" style="stroke: var(--a600);">
+                        <use xlink:href="#icon-insight"/>
+                    </svg>
+                    <strong>Training Volume</strong>
+                    <p style="margin-top: 0.5rem; color: var(--n100);">Training down 30% vs 28-day average — schedule 1 short session (10-15m).</p>
+                </div>
+                <div class="coaching-hint" style="border-color: var(--r600);">
+                    <svg width="20" height="20" class="hint-icon" style="stroke: var(--r600);">
+                        <use xlink:href="#icon-warning"/>
+                    </svg>
+                    <strong>Recovery Alert</strong>
+                    <p style="margin-top: 0.5rem; color: var(--n100);">High intensity 3 days in a row — consider light technical work today.</p>
+                </div>
+            </section>
+
+            <!-- Feature 9: Shareable Progress Card -->
+            <section class="analytics-card scroll-animate">
+                <h2 style="color: var(--p600); margin-bottom: 1.5rem;">9. Share Your Progress</h2>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, var(--n800), var(--n700)); padding: 2rem; border-radius: 12px; border: 2px solid var(--p600);">
+                        <h3 style="text-align: center; color: var(--p600); margin-bottom: 1.5rem;">Combo Flow — Week of Jan 1</h3>
+                        <div class="stat-grid">
+                            <div class="stat-item" style="background: var(--n900);">
+                                <span class="stat-value" style="font-size: 2rem;">7</span>
+                                <span class="stat-label">Sessions</span>
+                            </div>
+                            <div class="stat-item" style="background: var(--n900);">
+                                <span class="stat-value" style="font-size: 2rem;">315</span>
+                                <span class="stat-label">Minutes</span>
+                            </div>
+                            <div class="stat-item" style="background: var(--n900);">
+                                <span class="stat-value" style="font-size: 2rem; color: var(--r600);">7.2</span>
+                                <span class="stat-label">Avg Intensity</span>
+                            </div>
+                            <div class="stat-item" style="background: var(--n900);">
+                                <span class="stat-value" style="font-size: 2rem; color: var(--g600);">12</span>
+                                <span class="stat-label">Week Streak</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 1.5rem;">
+                            <button class="cta-button" style="background: var(--p600);">
+                                <svg width="20" height="20" style="vertical-align: middle; margin-right: 0.5rem;">
+                                    <use xlink:href="#icon-share"/>
+                                </svg>
+                                Export & Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section style="text-align: center; padding: 4rem 0; background: linear-gradient(135deg, var(--p600), var(--p500)); border-radius: var(--radius-lg); margin: 4rem 0;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--n000);">Ready to Train Smarter?</h2>
+                <p style="color: var(--n100); font-size: 1.2rem; margin-bottom: 2rem;">Unlock all analytics features with Combo Flow Pro</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <div style="text-align: center;">
+                        <span style="font-size: 2rem; font-weight: bold; color: var(--n000);">$9.99</span>
+                        <span style="display: block; color: var(--n100);">Monthly</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 2rem; font-weight: bold; color: var(--n000);">$59.99</span>
+                        <span style="display: block; color: var(--n100);">Yearly (Save 50%)</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 2rem; font-weight: bold; color: var(--n000);">$129.99</span>
+                        <span style="display: block; color: var(--n100);">Lifetime</span>
+                    </div>
+                </div>
+                <a href="index.html#download" class="cta-button" style="font-size: 1.2rem; padding: 1rem 3rem; background: var(--n000); color: var(--p600);">
+                    Get Combo Flow Pro
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Combo Flow. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="separator">•</span>
+                <a href="terms.html">Terms of Use</a>
+                <span class="separator">•</span>
+                <a href="mailto:comboflowsup@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Analytics Page Animations -->
+    <script>
+        // Animate progress ring on scroll
+        const progressRing = document.querySelector('.progress-ring-progress');
+        if (progressRing) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        progressRing.style.strokeDashoffset = '141';
+                    }
+                });
+            });
+            observer.observe(progressRing);
+        }
+
+        // Animate bars on scroll
+        const bars = document.querySelectorAll('.bar');
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.transform = 'scaleY(1)';
+                    }, index * 100);
+                }
+            });
+        });
+
+        bars.forEach(bar => {
+            bar.style.transform = 'scaleY(0)';
+            bar.style.transformOrigin = 'bottom';
+            barObserver.observe(bar);
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <script src="animations.js"></script>
+</body>
+</html>
