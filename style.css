@@ -835,3 +835,200 @@ button:focus {
         color: black;
     }
 }
+
+/* iPhone and iOS Specific Styles */
+/* Handle safe areas for iPhone X and later models with notches */
+@supports (padding: env(safe-area-inset-top)) {
+    body {
+        /* Add safe area padding to prevent content from being hidden behind notches */
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    header {
+        /* Ensure header content doesn't go under the notch */
+        padding-top: calc(var(--spacing-lg) + env(safe-area-inset-top));
+        padding-left: calc(var(--spacing-md) + env(safe-area-inset-left));
+        padding-right: calc(var(--spacing-md) + env(safe-area-inset-right));
+    }
+
+    footer {
+        /* Ensure footer content is above the home indicator */
+        padding-bottom: calc(var(--spacing-lg) + env(safe-area-inset-bottom));
+        padding-left: calc(var(--spacing-md) + env(safe-area-inset-left));
+        padding-right: calc(var(--spacing-md) + env(safe-area-inset-right));
+    }
+
+    .container {
+        /* Apply safe area padding to containers */
+        padding-left: calc(var(--spacing-md) + env(safe-area-inset-left));
+        padding-right: calc(var(--spacing-md) + env(safe-area-inset-right));
+    }
+}
+
+/* iPhone-specific viewport sizes */
+/* iPhone SE, 12 mini, 13 mini (375px width) */
+@media screen and (max-width: 375px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .feature {
+        padding: 1rem;
+    }
+
+    .feature h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* iPhone 14, 15, 14 Pro, 15 Pro (390-393px width) */
+@media screen and (min-width: 376px) and (max-width: 393px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 0 14px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* iPhone 14 Plus, 15 Plus, Pro Max models (428-430px width) */
+@media screen and (min-width: 428px) and (max-width: 430px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero h2 {
+        font-size: 1.35rem;
+    }
+}
+
+/* iPad Mini and iPad (768px and up in portrait) */
+@media screen and (min-width: 768px) and (max-width: 834px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+/* iPad Pro 11" (834px width in portrait) */
+@media screen and (min-width: 834px) and (max-width: 1024px) {
+    .container {
+        max-width: 800px;
+    }
+}
+
+/* iPad Pro 12.9" (1024px width in portrait) */
+@media screen and (min-width: 1024px) and (max-width: 1194px) {
+    .container {
+        max-width: 980px;
+    }
+}
+
+/* Prevent horizontal scroll on iOS devices */
+html,
+body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for iOS tap highlight */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure buttons and links are easily tappable on iOS */
+button,
+a,
+.btn-primary,
+.btn-secondary,
+.tier-button {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix text size adjustment on iOS */
+body {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Improve font rendering on iOS */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent zoom on form inputs on iOS */
+input,
+select,
+textarea {
+    font-size: 16px;
+}
+
+/* Handle landscape orientation on iPhones */
+@media screen and (max-width: 896px) and (orientation: landscape) {
+    header {
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
+    }
+
+    .hero {
+        padding: var(--spacing-md) 0;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    /* Reduce vertical spacing in landscape */
+    .feature {
+        padding: var(--spacing-sm);
+    }
+
+    section {
+        padding: var(--spacing-md) 0;
+    }
+}
