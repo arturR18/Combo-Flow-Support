@@ -272,31 +272,43 @@ intensityStyle.textContent = `
 `;
 document.head.appendChild(intensityStyle);
 
+// Mobile detection helper
+function isMobileDevice() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+}
+
 // Initialize all animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particle system on hero sections
-    const heroSections = document.querySelectorAll('.hero-enhanced, .analytics-hero');
-    heroSections.forEach(section => {
-        const canvas = document.createElement('canvas');
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.opacity = '0.3';
-        
-        section.style.position = 'relative';
-        section.insertBefore(canvas, section.firstChild);
-        
-        const particles = new ParticleSystem(canvas);
-        particles.animate();
-    });
+    const isMobile = isMobileDevice();
+
+    // Initialize particle system on hero sections (desktop only for performance)
+    if (!isMobile) {
+        const heroSections = document.querySelectorAll('.hero-enhanced, .analytics-hero');
+        heroSections.forEach(section => {
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.opacity = '0.3';
+
+            section.style.position = 'relative';
+            section.insertBefore(canvas, section.firstChild);
+
+            const particles = new ParticleSystem(canvas);
+            particles.animate();
+        });
+    }
     
     // Apply strike effect to buttons
     document.querySelectorAll('.cta-button').forEach(button => {
         createStrikeEffect(button);
-        createMagneticButton(button);
+        // Magnetic effect only on desktop for better mobile performance
+        if (!isMobile) {
+            createMagneticButton(button);
+        }
     });
     
     // Initialize parallax
@@ -360,11 +372,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     });
     
-    // Performance optimization - reduce animations on low-end devices
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Performance optimization - reduce animations on low-end devices and mobile
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isMobile) {
         document.querySelectorAll('[class*="animate-"]').forEach(element => {
-            element.style.animation = 'none';
+            // Keep essential animations but reduce complexity
+            if (element.classList.contains('animate-fade-in')) {
+                // Keep fade-in for better UX
+                element.style.animationDuration = '0.3s';
+            } else if (!element.classList.contains('scroll-animate')) {
+                // Remove non-essential animations on mobile
+                element.style.animation = 'none';
+            }
         });
+
+        // Reduce float animation on mobile
+        if (isMobile) {
+            document.querySelectorAll('.animate-float').forEach(element => {
+                element.style.animation = 'none';
+            });
+        }
     }
 });
 

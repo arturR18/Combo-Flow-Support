@@ -93,21 +93,169 @@ body::before {
 /* Header Styles */
 header {
     background: var(--dark-bg);
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-sm) 0;
     border-bottom: 1px solid var(--n600);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header h1 {
-    font-size: 2.5rem;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--n000);
-    margin-bottom: var(--spacing-xs);
+    margin: 0;
 }
 
-header h1 a {
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    z-index: 1002;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--n000);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--n100);
     text-decoration: none;
-    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--n000);
+}
+
+.nav-links .analytics-link {
+    color: var(--p600);
+    font-weight: bold;
+}
+
+.nav-links .nav-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Mobile Navigation Menu */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--n900);
+    z-index: 1001;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav-content {
+    padding: 80px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-nav-link {
+    color: var(--n100);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+.mobile-nav-link:hover {
+    background: var(--n800);
+    color: var(--n000);
+}
+
+.mobile-nav-link.analytics-link {
+    color: var(--p600);
+    font-weight: bold;
+}
+
+.mobile-nav-link.cta-button {
+    background: var(--g600);
+    color: var(--n000);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+}
+
+/* Show desktop nav on larger screens */
+@media (min-width: 768px) {
+    header {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .nav-logo {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .desktop-nav {
+        display: flex;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
 }
 
 .tagline {
@@ -449,43 +597,80 @@ footer p {
     color: var(--text-muted);
 }
 
-/* Responsive Design */
+/* Responsive Design - Mobile First Approach */
+/* Base mobile styles are defined above, these are enhancements */
+
+/* Small tablets and large phones */
+@media (min-width: 640px) {
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets and smaller desktops */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.5rem;
-    }
-    
     .container {
         padding: 0 var(--spacing-sm);
     }
-    
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
     .features {
         grid-template-columns: 1fr;
     }
-    
+
     .comparison {
         grid-template-columns: 1fr;
     }
-    
+
     .tier.pro {
         margin-top: var(--spacing-md);
     }
-    
+
     .legal-content h2 {
         font-size: 1.5rem;
     }
-    
+
     .footer-links {
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    
+
     .separator {
         display: none;
+    }
+
+    /* Combo sequence on mobile */
+    .combo-sequence {
+        font-size: 1.1rem;
+        padding: var(--spacing-sm);
+        letter-spacing: 0.1em;
+    }
+
+    /* Social proof cards */
+    .social-proof {
+        padding: var(--spacing-lg) var(--spacing-sm) !important;
+        margin: var(--spacing-lg) 0 !important;
+    }
+
+    /* Pro features */
+    .pro-features h2 {
+        font-size: 1.75rem !important;
+    }
+
+    /* Download section */
+    #download {
+        padding: var(--spacing-lg) var(--spacing-sm) !important;
+        margin: var(--spacing-lg) 0 !important;
+    }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 1024px) {
+    .features {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -720,40 +905,61 @@ button:focus {
 /* Training Stats */
 .stat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--spacing-md);
-    margin: var(--spacing-lg) 0;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
 }
 
 .stat-item {
     text-align: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     background: var(--n800);
     border-radius: var(--radius-md);
     border: 1px solid var(--n600);
 }
 
 .stat-value {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     font-weight: bold;
     color: var(--g600);
     display: block;
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .stat-label {
     color: var(--n300);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+@media (min-width: 480px) {
+    .stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-md);
+        margin: var(--spacing-lg) 0;
+    }
+
+    .stat-item {
+        padding: var(--spacing-md);
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
 }
 
 /* Hero Section Enhancements */
 .hero-enhanced {
     position: relative;
-    padding: var(--spacing-xl) 0;
-    min-height: 80vh;
+    padding: var(--spacing-lg) var(--spacing-sm);
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -763,19 +969,53 @@ button:focus {
     position: relative;
     z-index: 2;
     text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
     font-weight: 900;
     margin-bottom: var(--spacing-md);
     color: var(--n000);
     animation: float 3s ease-in-out infinite;
+    padding: 0 var(--spacing-sm);
+    line-height: 1.2;
+}
+
+/* Mobile-specific hero adjustments */
+@media (max-width: 768px) {
+    .hero-enhanced {
+        min-height: calc(100vh - 60px);
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-enhanced p {
+        font-size: 1rem !important;
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-enhanced {
+        padding: var(--spacing-xl) var(--spacing-md);
+        min-height: 80vh;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
 }
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.875rem 1.5rem;
     background: var(--g600);
     color: var(--n000);
     text-decoration: none;
@@ -787,6 +1027,11 @@ button:focus {
     box-shadow: 0 2px 10px rgba(22, 163, 74, 0.2);
     position: relative;
     overflow: hidden;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
 }
 
 .cta-button:hover {
@@ -808,6 +1053,27 @@ button:focus {
 
 .cta-button:hover::before {
     left: 0;
+}
+
+/* CTA Button container styling for mobile */
+.hero-content .cta-button {
+    width: 100%;
+    max-width: 280px;
+    margin: 0.5rem auto;
+    display: block;
+}
+
+@media (min-width: 640px) {
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .hero-content .cta-button {
+        width: auto;
+        display: inline-block;
+        margin: 0.5rem;
+    }
 }
 
 /* Print Styles */
@@ -843,15 +1109,24 @@ button:focus {
         /* Add safe area padding to prevent content from being hidden behind notches */
         padding-left: env(safe-area-inset-left);
         padding-right: env(safe-area-inset-right);
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
+        min-height: 100vh;
     }
 
     header {
         /* Ensure header content doesn't go under the notch */
-        padding-top: calc(var(--spacing-lg) + env(safe-area-inset-top));
-        padding-left: calc(var(--spacing-md) + env(safe-area-inset-left));
-        padding-right: calc(var(--spacing-md) + env(safe-area-inset-right));
+        padding-top: calc(var(--spacing-sm) + env(safe-area-inset-top));
+        padding-left: calc(var(--spacing-sm) + env(safe-area-inset-left));
+        padding-right: calc(var(--spacing-sm) + env(safe-area-inset-right));
+    }
+
+    .mobile-nav {
+        /* Ensure mobile menu respects safe areas */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mobile-nav-content {
+        padding-top: calc(80px + env(safe-area-inset-top));
     }
 
     footer {
@@ -863,8 +1138,19 @@ button:focus {
 
     .container {
         /* Apply safe area padding to containers */
-        padding-left: calc(var(--spacing-md) + env(safe-area-inset-left));
-        padding-right: calc(var(--spacing-md) + env(safe-area-inset-right));
+        padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+        padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+    }
+
+    .hero-enhanced {
+        /* Adjust hero padding for safe areas */
+        padding-top: calc(var(--spacing-lg) + env(safe-area-inset-top));
+    }
+
+    @media (min-width: 768px) {
+        header {
+            padding-top: calc(var(--spacing-lg) + env(safe-area-inset-top));
+        }
     }
 }
 
